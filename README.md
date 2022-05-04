@@ -6,20 +6,24 @@ we intend to build a "fuzzy" autocomplete, where the user's spell might be wrong
 Moreover, the user will get suggestions on the phrases related to the word they are typing. We will use different algorithms to generate suggestions based on spells, 
 pronunciations and the actual distances on the keyboard.
 ___
-## Technologies:
-- Spring
-- Java GUI
-- Model View Controller (MVC) Design Pattern
-- Apache Commons 
+## Technologies & Design Pattern:
+- [Spring Framework](https://spring.io)
+- [Apache Maven](https://maven.apache.org)
+- [Apache Commons](https://commons.apache.org)
+- [Model View Controller (MVC) Design Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+- [Dependency Injection Design Pattern](https://en.wikipedia.org/wiki/Dependency_injection) and [Inverse of Control (IoC)](https://en.wikipedia.org/wiki/Inversion_of_control)
 ___
 ## Data Structures:
-- BK-Tree
-- HashMap
+- [BK-Tree](https://en.wikipedia.org/wiki/BK-tree) (to build index for quick word search by Levenshtein Distance)
+- Hash Table (to map search results to the links)
+- Trie (to build index for phonetic search)
+- ArrayList (to keep search results)
 ___
 ## Algorithms
-- Levenshtein Distance
-- Jaro-Winkler Distance Score
+- [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance)
+- [Jaro-Winkler Distance Score](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
 - Keyboard Weighting
+- [Double Metaphone Algorithm](https://en.wikipedia.org/wiki/Metaphone#Double_Metaphone)
 ___
 ## General Work Breakdown
 - Xinyue Liu: Framework setup, GUI
