@@ -10,11 +10,23 @@ import java.util.Collection;
  */
 @Component
 public class PhoneticIndex implements Index<String, String> {
+
+    /**
+     * Add a value to the in-memory database
+     *
+     * @param value value to be added
+     */
     @Override
     public void add(String value) {
 
     }
 
+    /**
+     * Find values in the in-memory database with a hint
+     *
+     * @param hint hint used to find objects
+     * @return a collection of the found values
+     */
     @Override
     public Collection<String> find(String hint) {
         return null;

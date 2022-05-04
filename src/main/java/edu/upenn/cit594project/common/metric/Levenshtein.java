@@ -14,6 +14,11 @@ public class Levenshtein implements IDistance<String, String> {
         this.weight = weight;
     }
 
+    /**
+     * @param obj1 the first string obj1
+     * @param obj2 the second string obj2
+     * @return the weighted Levenshtein distance between obj1 and obj2
+     */
     @Override
     public double getDistance(String obj1, String obj2) {
         return 0;

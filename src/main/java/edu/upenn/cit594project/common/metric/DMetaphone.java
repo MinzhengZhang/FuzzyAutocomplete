@@ -15,6 +15,11 @@ public class DMetaphone implements IDistance<String, String> {
         l = new Levenshtein();
     }
 
+    /**
+     * @param obj1 the first object
+     * @param obj2 the second object
+     * @return the distance between obj1 and obj2
+     */
     @Override
     public double getDistance(String obj1, String obj2) {
         return l.getDistance(
