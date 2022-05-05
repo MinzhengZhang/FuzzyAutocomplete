@@ -1,5 +1,8 @@
 package edu.upenn.cit594project.common;
 
+/**
+ * One entry in the search result returned by the search engine
+ */
 public class SearchResultItem {
     private String text;
     private String link;

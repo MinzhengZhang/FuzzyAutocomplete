@@ -5,6 +5,7 @@ import edu.upenn.cit594project.common.SearchResultItem;
 import java.util.List;
 
 public interface ISearchService {
+
     List<SearchResultItem> searchLevenshtein(String word);
 
     List<SearchResultItem> searchWeightedLevenshtein(String word);

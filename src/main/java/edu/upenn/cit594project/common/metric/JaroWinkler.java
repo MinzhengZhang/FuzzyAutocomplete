@@ -13,4 +13,15 @@ public class JaroWinkler implements IDistance<String, String> {
     public double getDistance(String obj1, String obj2) {
         return 0;
     }
+
+
+    /**
+     * @param obj1 the first string obj1
+     * @param obj2 the second string obj2
+     * @return the Jaro-Winkler similarity between obj1 and obj2
+     */
+    public double similarity(String obj1,String obj2){
+        return 0;
+    }
+
 }
