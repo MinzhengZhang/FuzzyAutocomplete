@@ -7,6 +7,7 @@ public interface ILoader {
     /**
      * load dictionary into memory
      * @param uri the URI of the data to be loaded
+     * @return the num of lines readgit
      */
-    void load(String uri);
+    int load(String uri);
 }
