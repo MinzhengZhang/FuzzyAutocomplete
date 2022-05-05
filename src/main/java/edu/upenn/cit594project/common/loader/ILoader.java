@@ -5,7 +5,7 @@ package edu.upenn.cit594project.common.loader;
  */
 public interface ILoader {
     /**
-     * load data into memory
+     * load dictionary into memory
      * @param uri the URI of the data to be loaded
      */
     void load(String uri);

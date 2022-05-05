@@ -17,7 +17,7 @@ public interface Index<V, H> {
     void add(V value);
 
     /**
-     * Find values in the in-memory database with a hint
+     * Find values in the in-memory database with a hint, only return size 10 collection
      *
      * @param hint hint used to find objects
      * @return a collection of the found values
