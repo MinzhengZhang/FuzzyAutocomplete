@@ -11,7 +11,19 @@ public interface INode {
 
 
     /**
-     * @return links to other Nodes in the tree
+     * @return the child at given index
      */
-    public int[] getNext();
+    public int getNext(int index);
+
+
+    /**
+     * @param set the word of the current node
+     */
+    public void setWord(String word);
+
+
+    /**
+     * @param set the child at the given index to the given value
+     */
+    public void setNext(int index, int value);
 }
