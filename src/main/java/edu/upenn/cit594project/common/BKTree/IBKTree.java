@@ -28,9 +28,8 @@ public interface IBKTree {
     /**
      * Get the words that are similar to the input string
      *
-     * @param root the root of the Tree
      * @param str  the input string str
      * @return a collection of strings that are similar to str
      */
-    public Collection<String> getSimilarWords(INode root, String str);
+    public Collection<String> getSimilarWords(String str);
 }

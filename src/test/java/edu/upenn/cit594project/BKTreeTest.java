@@ -35,7 +35,7 @@ public class BKTreeTest {
         bkt.add(node5);
         bkt.add(node6);
         bkt.add(node7);
-        List<String> res = (ArrayList<String>) bkt.getSimilarWords(root,"oop");
+        List<String> res = (ArrayList<String>) bkt.getSimilarWords("oop");
         assertEquals(2, res.size());
         assertTrue(res.contains("loop"));
         assertTrue(res.contains("troop"));

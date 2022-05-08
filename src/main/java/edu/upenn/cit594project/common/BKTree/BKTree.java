@@ -73,7 +73,11 @@ public class BKTree implements IBKTree {
     }
 
     @Override
-    public Collection<String> getSimilarWords(INode root, String str) {
+    public Collection<String> getSimilarWords(String str) {
+        return this.getSimilarWordsHelper(this.root, str);
+    }
+
+    private Collection<String> getSimilarWordsHelper(INode root, String str) {
         Collection<String> ret = new ArrayList<>();
         if (Objects.equals(root.getWord(), "") || root.getWord() == null) {
             return ret;
@@ -89,7 +93,7 @@ public class BKTree implements IBKTree {
         }
 
         while (start <= dist + TOL) {
-            Collection<String> tmp = this.getSimilarWords(this.Tree[root.getNext(start)], str);
+            Collection<String> tmp = this.getSimilarWordsHelper(this.Tree[root.getNext(start)], str);
             ret.addAll(tmp);
             start++;
         }
