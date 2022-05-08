@@ -53,7 +53,11 @@ public class BKTree implements IBKTree {
     }
 
     @Override
-    public void add(INode root, INode cur) {
+    public void add(INode cur) {
+        this.addHelper(this.root, cur);
+    }
+
+    private void addHelper(INode root, INode cur) {
         if (root.getWord() == null) {
             root = cur;
             return;
@@ -64,7 +68,7 @@ public class BKTree implements IBKTree {
             Tree[this.ptr] = cur;
             root.setNext(dist, this.ptr);
         } else {
-            add(Tree[root.getNext(dist)], cur);
+            addHelper(Tree[root.getNext(dist)], cur);
         }
     }
 

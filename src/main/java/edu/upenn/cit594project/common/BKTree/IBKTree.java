@@ -20,10 +20,9 @@ public interface IBKTree {
     /**
      * Add the current Node to the Tree
      *
-     * @param root the root of the Tree
      * @param cur  the current node
      */
-    public void add(INode root, INode cur);
+    public void add(INode cur);
 
 
     /**
