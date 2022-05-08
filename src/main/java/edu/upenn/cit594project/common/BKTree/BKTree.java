@@ -11,12 +11,18 @@ public class BKTree implements IBKTree{
     public BKTree(){
         this.root = new Node();
         this.Tree = new INode[MAXN];
+        for (int i = 0; i < MAXN; i++) {
+            Tree[i] = new Node();
+        }
         this.ptr = 0;
     }
 
     public BKTree(INode root){
         this.root = root;
         this.Tree = new INode[MAXN];
+        for (int i = 0; i < MAXN; i++) {
+            Tree[i] = new Node();
+        }
         this.ptr = 0;
     }
 
@@ -55,7 +61,7 @@ public class BKTree implements IBKTree{
             return;
         }
         int dist = editDistance(cur.getWord(), root.getWord());
-        if (this.Tree[root.getNext(dist)].getWord() == "") {
+        if (this.Tree[root.getNext(dist)].getWord() == null) {
             this.ptr++;
             Tree[this.ptr] = cur;
             root.setNext(dist, this.ptr);
@@ -71,7 +77,7 @@ public class BKTree implements IBKTree{
             return ret;
         }
         int dist = editDistance(root.getWord(), str);
-        if (dist < TOL) ret.add(root.getWord());
+        if (dist <= TOL) ret.add(root.getWord());
 
         int start = dist - TOL;
         if (start < 0) start = 1;
