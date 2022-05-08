@@ -23,23 +23,21 @@ public class Levenshtein implements IDistance<String, String> {
     public double getDistance(String obj1, String obj2) {
         int m = obj1.length();
         int n = obj2.length();
-        double[][] dp = new double[m+1][n + 1];
+        double[][] dp = new double[m + 1][n + 1];
         for (int i = 0; i < dp.length; i++) {
-            for (int j = 0; j <dp[0].length; j++){
-                if(i == 0){
+            for (int j = 0; j < dp[0].length; j++) {
+                if (i == 0) {
                     dp[i][j] = j;
-                }
-                else if (j == 0){
+                } else if (j == 0) {
                     dp[i][j] = i;
-                }
-                else {
+                } else {
                     double c = 0.0;
-                    double cost = weight.getWeight(obj1.charAt(i-1),obj2.charAt(j-1));
-                    if (obj1.charAt(i-1) != obj2.charAt(j-1)) {
+                    double cost = weight.getWeight(obj1.charAt(i - 1), obj2.charAt(j - 1));
+                    if (obj1.charAt(i - 1) != obj2.charAt(j - 1)) {
                         c = cost;
                     }
 //Wagner–Fischer Algorithm
-                    dp[i][j] = Math.min(c + dp[i - 1][j - 1], Math.min( 1 + dp[i - 1][j], 1 + dp[i][j - 1]));
+                    dp[i][j] = Math.min(c + dp[i - 1][j - 1], Math.min(1 + dp[i - 1][j], 1 + dp[i][j - 1]));
                 }
             }
         }

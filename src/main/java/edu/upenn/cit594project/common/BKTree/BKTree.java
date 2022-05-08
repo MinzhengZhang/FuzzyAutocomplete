@@ -1,57 +1,51 @@
 package edu.upenn.cit594project.common.BKTree;
 
+import edu.upenn.cit594project.common.metric.IDistance;
+import edu.upenn.cit594project.common.metric.Levenshtein;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
-public class BKTree implements IBKTree{
-    private INode root;
-    private INode[] Tree;
+public class BKTree implements IBKTree {
+    private final INode root;
+    private final INode[] Tree;
     int ptr;
+    IDistance<String, String> distCalc;
 
-    public BKTree(){
+    public BKTree() {
         this.root = new Node();
         this.Tree = new INode[MAXN];
         for (int i = 0; i < MAXN; i++) {
             Tree[i] = new Node();
         }
         this.ptr = 0;
+        this.distCalc = new Levenshtein();
     }
 
-    public BKTree(INode root){
+    public BKTree(INode root) {
         this.root = root;
         this.Tree = new INode[MAXN];
         for (int i = 0; i < MAXN; i++) {
             Tree[i] = new Node();
         }
         this.ptr = 0;
+        this.distCalc = new Levenshtein();
+    }
+
+    public BKTree(IDistance<String, String> distCalc) {
+        this.root = new Node();
+        this.Tree = new INode[MAXN];
+        for (int i = 0; i < MAXN; i++) {
+            Tree[i] = new Node();
+        }
+        this.ptr = 0;
+        this.distCalc = distCalc;
     }
 
     @Override
     public int editDistance(String str1, String str2) {
-        int m = str1.length();
-        int n = str2.length();
-        int[][] dp = new int[m + 1][n + 1];
-        for (int i=0; i <= m; i++)
-            dp[i][0] = i;
-        for (int j=0; j <= n; j++)
-            dp[0][j] = j;
-
-        for (int i=1; i<=m; i++)
-        {
-            for (int j=1; j<=n; j++)
-            {
-                if (str1.charAt(i - 1) != str2.charAt(j - 1))
-                {
-                    dp[i][j] = IBKTree.min( 1 + dp[i-1][j],  // deletion
-                            1 + dp[i][j-1],  // insertion
-                            1 + dp[i-1][j-1] // replacement
-                    );
-                }
-                else
-                    dp[i][j] = dp[i-1][j-1];
-            }
-        }
-        return dp[m][n];
+        return (int) Math.round(distCalc.getDistance(str1, str2));
     }
 
     @Override
@@ -73,20 +67,22 @@ public class BKTree implements IBKTree{
     @Override
     public Collection<String> getSimilarWords(INode root, String str) {
         Collection<String> ret = new ArrayList<>();
-        if (root.getWord() == "" || root.getWord() == null) {
+        if (Objects.equals(root.getWord(), "") || root.getWord() == null) {
             return ret;
         }
         int dist = editDistance(root.getWord(), str);
-        if (dist <= TOL) ret.add(root.getWord());
+        if (dist <= TOL) {
+            ret.add(root.getWord());
+        }
 
         int start = dist - TOL;
-        if (start < 0) start = 1;
+        if (start < 0) {
+            start = 1;
+        }
 
         while (start <= dist + TOL) {
             Collection<String> tmp = this.getSimilarWords(this.Tree[root.getNext(start)], str);
-            for (String s: tmp) {
-                ret.add(s);
-            }
+            ret.addAll(tmp);
             start++;
         }
         return ret;
