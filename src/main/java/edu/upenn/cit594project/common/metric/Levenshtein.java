@@ -34,8 +34,8 @@ public class Levenshtein implements IDistance<String, String> {
                 }
                 else {
                     double c = 0.0;
-                    double cost = weight.getWeight(obj1.charAt(i),obj2.charAt(j));
-                    if (obj1.charAt(i) != obj2.charAt(j)) {
+                    double cost = weight.getWeight(obj1.charAt(i-1),obj2.charAt(j-1));
+                    if (obj1.charAt(i-1) != obj2.charAt(j-1)) {
                         c = cost;
                     }
 //Wagner–Fischer Algorithm
