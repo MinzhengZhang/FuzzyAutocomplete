@@ -8,6 +8,7 @@ import java.util.*;
 public class KeyboardSimilarity implements ILevenshteinWeight {
     // position of letters in QWERT keyborad, assuming letters are lower case
     private static final Map<Character, Map.Entry<Integer,Integer>> keyboardPosition ;
+    private static final double avgWeight = 0.40204048134548814;
     static {
         Map<Character, Map.Entry<Integer,Integer>> keyboard = new HashMap<>();
         keyboard.put('q', new AbstractMap.SimpleEntry<Integer,Integer>(0,0));
@@ -62,7 +63,9 @@ public class KeyboardSimilarity implements ILevenshteinWeight {
         int x2 = entry2.getKey();
         int y2 = entry2.getValue();
         double eucDistance = Math.sqrt(Math.pow(x1-x2,2) + Math.pow(y1-y2,2));
-        return 1.0 / eucDistance;
+        double weight = 1.0 / eucDistance;
+
+        return weight / avgWeight;
     }
 
 }

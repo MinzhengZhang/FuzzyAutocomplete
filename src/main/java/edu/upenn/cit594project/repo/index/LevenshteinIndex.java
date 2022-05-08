@@ -10,6 +10,7 @@ import java.util.Collection;
  */
 @Component
 public class LevenshteinIndex implements Index<String, String> {
+
     /**
      * Add a value to the in-memory database
      *
