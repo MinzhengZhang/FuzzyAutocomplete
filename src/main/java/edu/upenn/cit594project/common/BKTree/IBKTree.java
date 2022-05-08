@@ -6,14 +6,13 @@ public interface IBKTree {
     // maximum number of words in dict[]
     public static final int MAXN = 100;
     // define the tolerance value
-    public static final int TOL = 2;
 
     /**
      * Calculate the edit distance between two input strings
      *
      * @param str1 input string str1
      * @param str2 input string str2
-     * @return he edit distance between str1 and str2
+     * @return the edit distance between str1 and str2
      */
     public int editDistance(String str1, String str2);
 

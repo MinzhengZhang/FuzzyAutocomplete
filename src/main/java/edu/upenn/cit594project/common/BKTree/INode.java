@@ -4,6 +4,7 @@ public interface INode {
     // define the maximum length of a word
     public static final int LEN = 10;
 
+
     /**
      * @return the word of the current node
      */
@@ -11,19 +12,23 @@ public interface INode {
 
 
     /**
-     * @return the child at given index
+     * @param index the index of the child
+     * @return the child at the given index
      */
     public int getNext(int index);
 
 
     /**
-     * @param set the word of the current node
+     * @param word the word to be set
      */
     public void setWord(String word);
 
 
     /**
-     * @param set the child at the given index to the given value
+     * set the child at the given index to the given value
+     *
+     * @param index the index of the child
+     * @param value the value of the child
      */
     public void setNext(int index, int value);
 }

@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class BKTreeTest {
     @Test
     public void testEditDistance() {
-        BKTree bkt = new BKTree();
+        BKTree bkt = new BKTree(2);
         int distance = bkt.editDistance("apple", "appear");
         assertEquals(3, distance);
     }
@@ -29,7 +29,7 @@ public class BKTreeTest {
         INode node7 = new Node("shell");
         INode node8 = new Node("helper");
         INode node9 = new Node("troop");
-        BKTree bkt = new BKTree(root);
+        BKTree bkt = new BKTree(root, 2);
         bkt.add(root, node1);
         bkt.add(root, node2);
         bkt.add(root, node3);

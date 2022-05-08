@@ -12,8 +12,9 @@ public class BKTree implements IBKTree {
     private final INode[] Tree;
     int ptr;
     IDistance<String, String> distCalc;
+    private int TOL;
 
-    public BKTree() {
+    public BKTree(int TOL) {
         this.root = new Node();
         this.Tree = new INode[MAXN];
         for (int i = 0; i < MAXN; i++) {
@@ -21,9 +22,10 @@ public class BKTree implements IBKTree {
         }
         this.ptr = 0;
         this.distCalc = new Levenshtein();
+        this.TOL = TOL;
     }
 
-    public BKTree(INode root) {
+    public BKTree(INode root, int TOL) {
         this.root = root;
         this.Tree = new INode[MAXN];
         for (int i = 0; i < MAXN; i++) {
@@ -31,9 +33,10 @@ public class BKTree implements IBKTree {
         }
         this.ptr = 0;
         this.distCalc = new Levenshtein();
+        this.TOL = TOL;
     }
 
-    public BKTree(IDistance<String, String> distCalc) {
+    public BKTree(IDistance<String, String> distCalc, int TOL) {
         this.root = new Node();
         this.Tree = new INode[MAXN];
         for (int i = 0; i < MAXN; i++) {
@@ -41,6 +44,7 @@ public class BKTree implements IBKTree {
         }
         this.ptr = 0;
         this.distCalc = distCalc;
+        this.TOL = TOL;
     }
 
     @Override
