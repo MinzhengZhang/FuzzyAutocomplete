@@ -2,7 +2,7 @@ package edu.upenn.cit594project.common.BKTree;
 
 public interface INode {
     // define the maximum length of a word
-    public static final int LEN = 10;
+    public static final int LEN = 40;
 
 
     /**
