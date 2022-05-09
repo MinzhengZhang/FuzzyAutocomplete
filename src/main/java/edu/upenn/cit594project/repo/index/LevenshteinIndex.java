@@ -1,5 +1,8 @@
 package edu.upenn.cit594project.repo.index;
 
+import edu.upenn.cit594project.common.BKTree.BKTree;
+import edu.upenn.cit594project.common.BKTree.INode;
+import edu.upenn.cit594project.common.BKTree.Node;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -10,7 +13,8 @@ import java.util.Collection;
  */
 @Component
 public class LevenshteinIndex implements Index<String, String> {
-
+    private INode root = new Node("abandon");
+    private BKTree bkt = new BKTree(root,4);
     /**
      * Add a value to the in-memory database
      *
@@ -18,7 +22,8 @@ public class LevenshteinIndex implements Index<String, String> {
      */
     @Override
     public void add(String value) {
-
+        INode node = new Node(value);
+        bkt.add(node);
     }
 
     /**
@@ -29,6 +34,8 @@ public class LevenshteinIndex implements Index<String, String> {
      */
     @Override
     public Collection<String> find(String hint) {
-        return null;
+        Collection<String> res = bkt.getSimilarWords(hint);
+        return res;
     }
+
 }
