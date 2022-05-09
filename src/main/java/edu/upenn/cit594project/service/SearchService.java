@@ -49,7 +49,7 @@ public class SearchService implements ISearchService {
 
         Stream<String> preKeyStream = candidates
                 .stream()
-                .filter(k -> l2.getDistance(k, word) <= 0.2 * k.length())
+                .filter(k -> l2.getDistance(k, word) <= 0.35 * k.length())
                 .sorted(l1Comparator);
 
         Stream<String> postKeyStream = candidates

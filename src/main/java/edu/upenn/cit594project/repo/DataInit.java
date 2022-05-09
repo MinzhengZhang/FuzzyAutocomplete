@@ -16,6 +16,6 @@ public class DataInit implements ApplicationListener<ApplicationReadyEvent> {
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        loader.load("./static/pokemonDict.txt");
+        loader.load("./static/wikiDict.txt");
     }
 }
