@@ -1,6 +1,7 @@
 package edu.upenn.cit594project.service;
 
 import edu.upenn.cit594project.common.SearchResultItem;
+import edu.upenn.cit594project.common.metric.JaroWinkler;
 import edu.upenn.cit594project.common.metric.KeyboardSimilarity;
 import edu.upenn.cit594project.common.metric.Levenshtein;
 import edu.upenn.cit594project.repo.LinkRepo;
@@ -39,7 +40,7 @@ public class SearchService implements ISearchService {
 
     @Override
     public List<SearchResultItem> searchWeightedLevenshtein(String word) {
-        Levenshtein l = new Levenshtein(new KeyboardSimilarity(), 0.4, 1.1, 1);
+        Levenshtein l = new Levenshtein(new KeyboardSimilarity(), 0.0, 1.1, 1);
         List<String> keys = li.find(word);
         keys.sort(Comparator.comparingDouble(k -> l.getDistance(word, k)));
         return keys
@@ -59,9 +60,13 @@ public class SearchService implements ISearchService {
 
     @Override
     public List<SearchResultItem> searchJaroWinkler(String word) {
-        return List.of(new SearchResultItem(
-                "TODO",
-                "https://github.com/upenn-cit594/github-workshop-activity-mxz"
-        ));
+        JaroWinkler jw = new JaroWinkler();
+        List<String> keys = li.find(word);
+        keys.sort(Comparator.comparingDouble(k -> jw.similarity(word, k)));
+        return keys
+                .stream()
+                .limit(10)
+                .map(k -> new SearchResultItem(k, lr.getLink(k)))
+                .collect(Collectors.toList());
     }
 }
