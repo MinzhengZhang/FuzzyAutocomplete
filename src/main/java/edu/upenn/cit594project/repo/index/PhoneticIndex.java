@@ -38,8 +38,12 @@ public class PhoneticIndex implements Index<String, String> {
      * @return a collection of the found values
      */
     @Override
-    public Collection<String> find(String hint) {
+    public List<String> find(String hint) {
         String metaphone = dm.doubleMetaphone(hint);
-        return phoneticMap.getOrDefault(metaphone, Collections.emptyList());
+        if (phoneticMap.containsKey(metaphone)) {
+            return new ArrayList<>(phoneticMap.get(metaphone));
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

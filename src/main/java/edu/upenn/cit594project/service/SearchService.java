@@ -8,9 +8,9 @@ import edu.upenn.cit594project.repo.index.LevenshteinIndex;
 import edu.upenn.cit594project.repo.index.PhoneticIndex;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class SearchService implements ISearchService {
@@ -27,34 +27,62 @@ public class SearchService implements ISearchService {
 
     @Override
     public List<SearchResultItem> searchLevenshtein(String word) {
-        Levenshtein l = new Levenshtein();
+        Levenshtein l2 = new Levenshtein();
         List<String> keys = li.find(word);
-        keys.sort(Comparator.comparingDouble(k -> l.getDistance(word, k)));
+        keys.sort(Comparator.comparingDouble(k -> l2.getDistance(word, k)));
         return keys
                 .stream()
                 .limit(10)
                 .map(k -> new SearchResultItem(k, lr.getLink(k)))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
     public List<SearchResultItem> searchWeightedLevenshtein(String word) {
-        Levenshtein l = new Levenshtein(new KeyboardSimilarity(), 0.4, 1.1, 1);
-        List<String> keys = li.find(word);
-        keys.sort(Comparator.comparingDouble(k -> l.getDistance(word, k)));
-        return keys
+        Levenshtein l1 = new Levenshtein(new KeyboardSimilarity(), 0.4, 1.1, 1);
+        Levenshtein l2 = new Levenshtein();
+
+        Comparator<String> l1Comparator = Comparator.comparingDouble(k -> l1.getDistance(word, k));
+
+        List<String> candidates = li.find(word);
+
+        Stream<String> preKeyStream = candidates
                 .stream()
+                .filter(k -> l2.getDistance(k, word) <= 0.2 * k.length())
+                .sorted(l1Comparator);
+
+        Stream<String> postKeyStream = candidates
+                .stream()
+                .sorted(l1Comparator);
+
+        return Stream.concat(preKeyStream, postKeyStream)
+                .distinct()
                 .limit(10)
                 .map(k -> new SearchResultItem(k, lr.getLink(k)))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
     public List<SearchResultItem> searchPhonetic(String word) {
-        return List.of(new SearchResultItem(
-                "TODO",
-                "https://github.com/upenn-cit594/github-workshop-activity-mxz"
-        ));
+        Levenshtein l1 = new Levenshtein(new KeyboardSimilarity(), 0.4, 1.1, 1);
+
+        Comparator<String> l1Comparator = Comparator.comparingDouble(k -> l1.getDistance(word, k));
+
+        Stream<String> preKeyStream = pi
+                .find(word)
+                .stream()
+                .sorted(l1Comparator);
+
+        Stream<String> postKeyStream = li
+                .find(word)
+                .stream()
+                .sorted(l1Comparator);
+
+        return Stream.concat(preKeyStream, postKeyStream)
+                .distinct()
+                .limit(10)
+                .map(k -> new SearchResultItem(k, lr.getLink(k)))
+                .collect(Collectors.toList());
     }
 
     @Override
