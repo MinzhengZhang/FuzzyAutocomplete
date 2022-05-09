@@ -39,7 +39,7 @@ public class SearchService implements ISearchService {
 
     @Override
     public List<SearchResultItem> searchWeightedLevenshtein(String word) {
-        Levenshtein l = new Levenshtein(new KeyboardSimilarity(), 24, 1 << 24, 1 << 24);
+        Levenshtein l = new Levenshtein(new KeyboardSimilarity(), 0.4, 1.1, 1);
         List<String> keys = li.find(word);
         keys.sort(Comparator.comparingDouble(k -> l.getDistance(word, k)));
         return keys

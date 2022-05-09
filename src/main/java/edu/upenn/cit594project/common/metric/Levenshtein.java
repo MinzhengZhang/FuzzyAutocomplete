@@ -50,7 +50,7 @@ public class Levenshtein implements IDistance<String, String> {
                     if (obj1.charAt(i - 1) != obj2.charAt(j - 1)) {
                         c = cost * swapFactor / invPen;
                     }
-//Wagner–Fischer Algorithm
+                    // Wagner–Fischer Algorithm
                     dp[i][j] = Math.min(
                             c + dp[i - 1][j - 1],
                             Math.min(

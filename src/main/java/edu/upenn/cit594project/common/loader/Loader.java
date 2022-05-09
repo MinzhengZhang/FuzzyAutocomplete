@@ -33,15 +33,17 @@ public class Loader implements ILoader {
         try (Scanner scanner = new Scanner(
                 Objects.requireNonNull(Loader.class.getClassLoader().getResourceAsStream(uri))
         )) {
-            scanner.nextLong();
             String key = scanner.next();
+            String link = scanner.next();
             li.setRoot(key);
             pi.add(key);
+            lr.setLink(key, link);
             while (scanner.hasNext()) {
-                scanner.nextLong();
                 key = scanner.next();
+                link = scanner.next();
                 li.add(key);
                 pi.add(key);
+                lr.setLink(key, link);
             }
         }
         return 0;

@@ -20,9 +20,9 @@ public class LevenshteinTest {
 
     @Test
     public void addTest() {
-        Levenshtein l = new Levenshtein(new KeyboardSimilarity(), 24, 1 << 24, 1 << 24);
-        System.out.println(l.getDistance("g", "geodude"));
-        System.out.println(l.getDistance("g", "mew"));
+        Levenshtein l = new Levenshtein(new KeyboardSimilarity(), 0.4, 1.1, 1);
+        System.out.println(l.getDistance("gensect", "gengar"));
+        System.out.println(l.getDistance("gensect", "genesect"));
     }
 
 }
