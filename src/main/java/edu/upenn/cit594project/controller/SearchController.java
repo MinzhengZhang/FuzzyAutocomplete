@@ -27,10 +27,6 @@ public class SearchController {
         );
     }
 
-    /**
-     * @param word
-     * @return
-     */
     @GetMapping("/Levenshtein/{word}")
     public SimpleDTO<List<SearchResultItem>> getLevenshteinSearch(
             @PathVariable String word) {

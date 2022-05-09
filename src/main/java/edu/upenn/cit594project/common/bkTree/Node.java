@@ -1,17 +1,17 @@
-package edu.upenn.cit594project.common.BKTree;
+package edu.upenn.cit594project.common.bkTree;
 
-public class Node implements INode{
+public class Node implements INode {
     private String word;
     private int[] next;
 
     public Node() {
         this.word = null;
-        this.next = new int[2*LEN];
+        this.next = new int[2 * LEN];
     }
 
-    public Node (String word) {
+    public Node(String word) {
         this.word = word;
-        this.next = new int[2*LEN];
+        this.next = new int[2 * LEN];
     }
 
     @Override

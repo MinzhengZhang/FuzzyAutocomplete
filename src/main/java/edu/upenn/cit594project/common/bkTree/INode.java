@@ -1,4 +1,4 @@
-package edu.upenn.cit594project.common.BKTree;
+package edu.upenn.cit594project.common.bkTree;
 
 public interface INode {
     // define the maximum length of a word

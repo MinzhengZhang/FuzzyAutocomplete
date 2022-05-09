@@ -3,10 +3,7 @@ package edu.upenn.cit594project.repo.index;
 import org.apache.commons.codec.language.DoubleMetaphone;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Index for phonetic fuzzy search
@@ -14,7 +11,7 @@ import java.util.Map;
  */
 @Component
 public class PhoneticIndex implements Index<String, String> {
-    private Map<String, Collection> phoneticMap = new HashMap<>();
+    private final Map<String, List<String>> phoneticMap = new HashMap<>();
     DoubleMetaphone dm = new DoubleMetaphone();
 
     /**
@@ -28,7 +25,7 @@ public class PhoneticIndex implements Index<String, String> {
         if (phoneticMap.containsKey(metaphone)) {
             phoneticMap.get(metaphone).add(value);
         } else {
-            Collection collection = new ArrayList();
+            List<String> collection = new ArrayList<>();
             collection.add(value);
             phoneticMap.put(metaphone, collection);
         }
@@ -43,11 +40,6 @@ public class PhoneticIndex implements Index<String, String> {
     @Override
     public Collection<String> find(String hint) {
         String metaphone = dm.doubleMetaphone(hint);
-        if (phoneticMap.containsKey(metaphone)) {
-            return phoneticMap.get(metaphone);
-        } else {
-            Collection retCollection = new ArrayList();
-            return retCollection;
-        }
+        return phoneticMap.getOrDefault(metaphone, Collections.emptyList());
     }
 }

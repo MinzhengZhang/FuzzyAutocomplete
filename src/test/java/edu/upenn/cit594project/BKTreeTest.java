@@ -1,8 +1,8 @@
 package edu.upenn.cit594project;
 
-import edu.upenn.cit594project.common.BKTree.BKTree;
-import edu.upenn.cit594project.common.BKTree.INode;
-import edu.upenn.cit594project.common.BKTree.Node;
+import edu.upenn.cit594project.common.bkTree.BKTree;
+import edu.upenn.cit594project.common.bkTree.INode;
+import edu.upenn.cit594project.common.bkTree.Node;
 import org.junit.Test;
 
 import java.util.ArrayList;

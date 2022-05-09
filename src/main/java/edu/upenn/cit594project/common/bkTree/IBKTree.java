@@ -1,10 +1,10 @@
-package edu.upenn.cit594project.common.BKTree;
+package edu.upenn.cit594project.common.bkTree;
 
 import java.util.Collection;
 
 public interface IBKTree {
     // maximum number of words in dict[]
-    public static final int MAXN = 100;
+    public static final int MAX_N = 10000;
     // define the tolerance value
 
     /**
