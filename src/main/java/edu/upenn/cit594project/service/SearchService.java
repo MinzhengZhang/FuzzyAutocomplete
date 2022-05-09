@@ -9,6 +9,7 @@ import edu.upenn.cit594project.repo.index.LevenshteinIndex;
 import edu.upenn.cit594project.repo.index.PhoneticIndex;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,7 +63,8 @@ public class SearchService implements ISearchService {
     public List<SearchResultItem> searchJaroWinkler(String word) {
         JaroWinkler jw = new JaroWinkler();
         List<String> keys = li.find(word);
-        keys.sort(Comparator.comparingDouble(k -> jw.similarity(word, k)));
+        keys.sort(Comparator.comparingDouble(k -> jw.similarity(word,k)));
+        Collections.reverse(keys);
         return keys
                 .stream()
                 .limit(10)
