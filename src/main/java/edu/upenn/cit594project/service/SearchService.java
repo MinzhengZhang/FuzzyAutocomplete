@@ -1,6 +1,7 @@
 package edu.upenn.cit594project.service;
 
 import edu.upenn.cit594project.common.SearchResultItem;
+import edu.upenn.cit594project.common.metric.JaroWinkler;
 import edu.upenn.cit594project.common.metric.KeyboardSimilarity;
 import edu.upenn.cit594project.common.metric.Levenshtein;
 import edu.upenn.cit594project.repo.LinkRepo;
@@ -87,9 +88,14 @@ public class SearchService implements ISearchService {
 
     @Override
     public List<SearchResultItem> searchJaroWinkler(String word) {
-        return List.of(new SearchResultItem(
-                "TODO",
-                "https://github.com/upenn-cit594/github-workshop-activity-mxz"
-        ));
+        JaroWinkler jw = new JaroWinkler();
+        List<String> keys = li.find(word);
+        keys.sort(Comparator.comparingDouble(k -> jw.similarity(word,k)));
+        Collections.reverse(keys);
+        return keys
+                .stream()
+                .limit(10)
+                .map(k -> new SearchResultItem(k, lr.getLink(k)))
+                .collect(Collectors.toList());
     }
 }

@@ -11,6 +11,7 @@ public class LevenshteinIndexTest {
     @Test
     public void testFind(){
         LevenshteinIndex li = new LevenshteinIndex();
+        li.setRoot("abandon");
         li.add("zm");
         li.add("campus");
         li.add("canvas");
@@ -21,10 +22,9 @@ public class LevenshteinIndexTest {
         Collection collection3 = li.find("dqjkdqnjkashdaojhjd");
 
 
-        assertEquals(4, collection1.size());
-        assertEquals(3,collection2.size());
+        assertEquals(6, collection1.size());
+        assertEquals(6,collection2.size());
         assertEquals(0,collection3.size());
-
     }
 
 
