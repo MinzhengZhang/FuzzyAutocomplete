@@ -50,7 +50,8 @@ public class BKTree implements IBKTree {
     }
 
     /**
-     * Constructor for BKTree, set root equals to null node and set distance calculation method to distCalc
+     * Constructor for BKTree, set root equals to null node and
+     * set distance calculation method to distCalc
      *
      * @param distCalc IDistance class, which includes distance calculation method
      * @param tol      tolerance limit for BKTree, which determines the range of edit distances

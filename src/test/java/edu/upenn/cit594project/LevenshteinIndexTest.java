@@ -1,15 +1,15 @@
 package edu.upenn.cit594project;
 
-import edu.upenn.cit594project.common.metric.Levenshtein;
 import edu.upenn.cit594project.repo.index.LevenshteinIndex;
 import org.junit.Test;
 
 import java.util.Collection;
 
 import static org.junit.Assert.*;
+
 public class LevenshteinIndexTest {
     @Test
-    public void testFind(){
+    public void testFind() {
         LevenshteinIndex li = new LevenshteinIndex();
         li.setRoot("abandon");
         li.add("zm");
@@ -23,12 +23,9 @@ public class LevenshteinIndexTest {
 
 
         assertEquals(6, collection1.size());
-        assertEquals(6,collection2.size());
-        assertEquals(0,collection3.size());
+        assertEquals(6, collection2.size());
+        assertEquals(0, collection3.size());
     }
-
-
-
 
 
 }
