@@ -1,7 +1,6 @@
 package edu.upenn.cit594project.repo;
 
 import edu.upenn.cit594project.common.loader.Loader;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;

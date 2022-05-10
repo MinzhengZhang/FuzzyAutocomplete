@@ -44,13 +44,14 @@ public class SearchService implements ISearchService {
         Levenshtein l2 = new Levenshtein();
 
         Comparator<String> l1Comparator = Comparator.comparingDouble(k -> l1.getDistance(word, k));
+        Comparator<String> l2Comparator = Comparator.comparingDouble(k -> l2.getDistance(word, k));
 
         List<String> candidates = li.find(word);
 
         Stream<String> preKeyStream = candidates
                 .stream()
                 .filter(k -> l2.getDistance(k, word) <= 0.35 * k.length())
-                .sorted(l1Comparator);
+                .sorted(l2Comparator.thenComparing(l1Comparator));
 
         Stream<String> postKeyStream = candidates
                 .stream()
@@ -90,7 +91,7 @@ public class SearchService implements ISearchService {
     public List<SearchResultItem> searchJaroWinkler(String word) {
         JaroWinkler jw = new JaroWinkler();
         List<String> keys = li.find(word);
-        keys.sort(Comparator.comparingDouble(k -> jw.similarity(word,k)));
+        keys.sort(Comparator.comparingDouble(k -> jw.similarity(word, k)));
         Collections.reverse(keys);
         return keys
                 .stream()
