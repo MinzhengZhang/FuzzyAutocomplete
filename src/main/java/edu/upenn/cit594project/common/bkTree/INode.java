@@ -1,5 +1,7 @@
 package edu.upenn.cit594project.common.bkTree;
-
+/**
+ * Interface for Node in the BKTree
+ */
 public interface INode {
     // define the maximum length of a word
     public static final int LEN = 40;

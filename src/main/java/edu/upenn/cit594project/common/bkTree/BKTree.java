@@ -6,7 +6,9 @@ import edu.upenn.cit594project.common.metric.Levenshtein;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+/**
+ * BKTree data structure implementation
+ */
 public class BKTree implements IBKTree {
     private final INode root;
     private final INode[] tree;

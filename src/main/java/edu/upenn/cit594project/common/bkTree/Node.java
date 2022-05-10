@@ -1,5 +1,7 @@
 package edu.upenn.cit594project.common.bkTree;
-
+/**
+ * Node in the BKTree
+ */
 public class Node implements INode {
     private String word;
     private int[] next;
