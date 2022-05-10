@@ -11,6 +11,9 @@ public class Levenshtein implements IDistance<String, String> {
     double swapFactor;
     double deleteFactor;
 
+    /**
+     * Default constructor for Levenshtein
+     */
     public Levenshtein() {
         this.weight = (c1, c2) -> 1;
         this.decayFactor = 0;
@@ -18,6 +21,14 @@ public class Levenshtein implements IDistance<String, String> {
         this.deleteFactor = 1;
     }
 
+    /**
+     * Constructor for Levenshtein
+     *
+     * @param weight LevenshteinWeight Object which includes calculation of weight
+     * @param decayFactor a double factor that
+     * @param swapFactor a double factor that
+     * @param deleteFactor a double factor that
+     */
     public Levenshtein(ILevenshteinWeight weight, double decayFactor, double swapFactor, double deleteFactor) {
         this.weight = weight;
         this.decayFactor = decayFactor;
@@ -32,6 +43,7 @@ public class Levenshtein implements IDistance<String, String> {
      */
     @Override
     public double getDistance(String obj1, String obj2) {
+
         obj1 = obj1.toLowerCase(Locale.ROOT);
         obj2 = obj2.toLowerCase(Locale.ROOT);
         int m = obj1.length();

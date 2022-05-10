@@ -16,6 +16,13 @@ public class Loader implements ILoader {
 
     final LinkRepo lr;
 
+    /**
+     * Constructor for Loader
+     *
+     * @param li LevenshteinIndex instance
+     * @param pi PhoneticIndex instance
+     * @param lr LinkRepo instance
+     */
     public Loader(LevenshteinIndex li, PhoneticIndex pi, LinkRepo lr) {
         this.li = li;
         this.pi = pi;

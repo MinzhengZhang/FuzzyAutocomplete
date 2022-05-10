@@ -6,12 +6,14 @@ public interface INode {
 
 
     /**
+     * Get Word in the Node
      * @return the word of the current node
      */
     public String getWord();
 
 
     /**
+     * Get the children of the index
      * @param index the index of the child
      * @return the child at the given index
      */
@@ -19,6 +21,7 @@ public interface INode {
 
 
     /**
+     * Set the word of Node equals to word
      * @param word the word to be set
      */
     public void setWord(String word);
