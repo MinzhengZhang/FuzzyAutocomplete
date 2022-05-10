@@ -33,27 +33,24 @@ public class JaroWinkler implements IDistance<String, String> {
 
         // Maximum distance upto which matching
         // is allowed
-        int max_dist = (int) (Math.floor(Math.max(len1, len2) / 2) - 1);
+        int maxDist = (int) (Math.floor(Math.max(len1, len2) / 2.0) - 1);
 
         // Count of matches
         int match = 0;
 
         // Hash for matches
-        int hash_s1[] = new int[obj1.length()];
-        int hash_s2[] = new int[obj2.length()];
+        int[] hashS1 = new int[obj1.length()];
+        int[] hashS2 = new int[obj2.length()];
 
         // Traverse through the first String
         for (int i = 0; i < len1; i++) {
 
             // Check if there is any matches
-            for (int j = Math.max(0, i - max_dist);
-                 j < Math.min(len2, i + max_dist + 1); j++)
-
-            // If there is a match
-            {
-                if (obj1.charAt(i) == obj2.charAt(j) && hash_s2[j] == 0) {
-                    hash_s1[i] = 1;
-                    hash_s2[j] = 1;
+            for (int j = Math.max(0, i - maxDist);
+                 j < Math.min(len2, i + maxDist + 1); j++) {   // If there is a match
+                if (obj1.charAt(i) == obj2.charAt(j) && hashS2[j] == 0) {
+                    hashS1[i] = 1;
+                    hashS2[j] = 1;
                     match++;
                     break;
                 }
@@ -75,11 +72,11 @@ public class JaroWinkler implements IDistance<String, String> {
         // there is a third matched character
         // in between the indices
         for (int i = 0; i < len1; i++) {
-            if (hash_s1[i] == 1) {
+            if (hashS1[i] == 1) {
 
                 // Find the next matched character
                 // in second String
-                while (hash_s2[point] == 0) {
+                while (hashS2[point] == 0) {
                     point++;
                 }
 

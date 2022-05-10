@@ -44,7 +44,7 @@ public class KeyboardSimilarity implements ILevenshteinWeight {
         keyboard.put('j', new AbstractMap.SimpleEntry<Integer, Integer>(2, 6));
         keyboard.put('k', new AbstractMap.SimpleEntry<Integer, Integer>(2, 7));
         keyboard.put('l', new AbstractMap.SimpleEntry<Integer, Integer>(2, 8));
-        keyboard.put('\'',new AbstractMap.SimpleEntry<Integer, Integer>(2, 10));
+        keyboard.put('\'', new AbstractMap.SimpleEntry<Integer, Integer>(2, 10));
 
         keyboard.put('z', new AbstractMap.SimpleEntry<Integer, Integer>(3, 0));
         keyboard.put('x', new AbstractMap.SimpleEntry<Integer, Integer>(3, 1));
@@ -75,7 +75,7 @@ public class KeyboardSimilarity implements ILevenshteinWeight {
         }
         Map.Entry<Integer, Integer> entry1 = KEYBOARD_POSITION.get(obj1);
         Map.Entry<Integer, Integer> entry2 = KEYBOARD_POSITION.get(obj2);
-        if(entry1 == null || entry2 == null){
+        if (entry1 == null || entry2 == null) {
             return SCALE_FACTOR;
         }
         int x1 = entry1.getKey();

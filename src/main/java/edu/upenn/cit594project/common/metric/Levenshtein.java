@@ -24,12 +24,16 @@ public class Levenshtein implements IDistance<String, String> {
     /**
      * Constructor for Levenshtein
      *
-     * @param weight LevenshteinWeight Object which includes calculation of weight
-     * @param decayFactor a double factor that specifies penalty for discrepancy near the beginning of the word
-     * @param swapFactor a double factor that specifies penalty for replacement operation
+     * @param weight       LevenshteinWeight Object which includes calculation of weight
+     * @param decayFactor  a double factor that specifies penalty for discrepancy
+     *                     near the beginning of the word
+     * @param swapFactor   a double factor that specifies penalty for replacement operation
      * @param deleteFactor a double factor that specifies penalty for deleting operation
      */
-    public Levenshtein(ILevenshteinWeight weight, double decayFactor, double swapFactor, double deleteFactor) {
+    public Levenshtein(ILevenshteinWeight weight,
+                       double decayFactor,
+                       double swapFactor,
+                       double deleteFactor) {
         this.weight = weight;
         this.decayFactor = decayFactor;
         this.swapFactor = swapFactor;
