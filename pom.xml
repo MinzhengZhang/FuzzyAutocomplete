@@ -10,7 +10,7 @@
     </parent>
     <groupId>edu.upenn</groupId>
     <artifactId>CIT594Project</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>CIT594Project</name>
     <description>CIT594Project</description>
     <properties>
@@ -50,6 +50,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.0</version>
             </plugin>
         </plugins>
     </build>

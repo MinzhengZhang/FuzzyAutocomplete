@@ -13,6 +13,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Singleton class implementing the main search service
+ */
 @Service
 public class SearchService implements ISearchService {
     final LevenshteinIndex li;
@@ -20,12 +23,25 @@ public class SearchService implements ISearchService {
 
     final LinkRepo lr;
 
+    /**
+     * Constructor used by Spring Boot for Dependency Injection
+     *
+     * @param li the Levenshtein Index
+     * @param pi the Phonetic Index
+     * @param lr the Link Repository
+     */
     public SearchService(LevenshteinIndex li, PhoneticIndex pi, LinkRepo lr) {
         this.li = li;
         this.pi = pi;
         this.lr = lr;
     }
 
+    /**
+     * Search words by primitive Levenshtein distance
+     *
+     * @param word word to be searched in the repo
+     * @return a list of search results
+     */
     @Override
     public List<SearchResultItem> searchLevenshtein(String word) {
         Levenshtein l2 = new Levenshtein();
@@ -38,6 +54,14 @@ public class SearchService implements ISearchService {
                 .toList();
     }
 
+    /**
+     * Search words by weighted Levenshtein distance
+     * The weight is determined by both keyboard distance
+     * and the position of discrepancy
+     *
+     * @param word word to be searched in the repo
+     * @return a list of search results
+     */
     @Override
     public List<SearchResultItem> searchWeightedLevenshtein(String word) {
         Levenshtein l1 = new Levenshtein(new KeyboardSimilarity(), 0.4, 1.1, 1);
@@ -64,6 +88,14 @@ public class SearchService implements ISearchService {
                 .toList();
     }
 
+    /**
+     * Search words using Phonetic index
+     * The phonetic index is built with
+     * Double Metaphone algorithm
+     *
+     * @param word word to be searched in the repo
+     * @return a list of search results
+     */
     @Override
     public List<SearchResultItem> searchPhonetic(String word) {
         Levenshtein l1 = new Levenshtein(new KeyboardSimilarity(), 0.4, 1.1, 1);
@@ -87,6 +119,12 @@ public class SearchService implements ISearchService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Search words with Jaro-Winkler distance
+     *
+     * @param word word to be searched in the repo
+     * @return a list of search results
+     */
     @Override
     public List<SearchResultItem> searchJaroWinkler(String word) {
         JaroWinkler jw = new JaroWinkler();
