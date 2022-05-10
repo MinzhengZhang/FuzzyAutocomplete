@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ *  Singleton class responsible for loading data into memory
+ */
 @Component
 public class Loader implements ILoader {
     final LevenshteinIndex li;
@@ -16,6 +19,13 @@ public class Loader implements ILoader {
 
     final LinkRepo lr;
 
+    /**
+     * Constructor for Loader
+     *
+     * @param li LevenshteinIndex instance
+     * @param pi PhoneticIndex instance
+     * @param lr LinkRepo instance
+     */
     public Loader(LevenshteinIndex li, PhoneticIndex pi, LinkRepo lr) {
         this.li = li;
         this.pi = pi;

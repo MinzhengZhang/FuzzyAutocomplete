@@ -1,7 +1,9 @@
 package edu.upenn.cit594project.common.bkTree;
 
 import java.util.Collection;
-
+/**
+ * Interface of BKTree data structure
+ */
 public interface IBKTree {
     // maximum number of words in dict[]
     public static final int MAX_N = 10000;

@@ -75,6 +75,9 @@ public class KeyboardSimilarity implements ILevenshteinWeight {
         }
         Map.Entry<Integer, Integer> entry1 = KEYBOARD_POSITION.get(obj1);
         Map.Entry<Integer, Integer> entry2 = KEYBOARD_POSITION.get(obj2);
+        if(entry1 == null || entry2 == null){
+            return SCALE_FACTOR;
+        }
         int x1 = entry1.getKey();
         int y1 = entry1.getValue();
         int x2 = entry2.getKey();
